@@ -19,4 +19,4 @@ run Rack::URLMap.new \
   "/"       => Demo::App.new,
   "/resque" => Resque::Server.new
 
-  Resque.redis = 'redis:6379'
+Resque.redis = 'redis:6379'
