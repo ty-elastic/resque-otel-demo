@@ -1,0 +1,17 @@
+services:
+
+  resque:
+    build:
+      context: .
+    restart: on-failure
+    ports:
+      - "4567:4567"
+    depends_on:
+      - redis
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${ELASTICSEARCH_APM_URL}
+      OTEL_EXPORTER_OTLP_HEADERS: "Authorization=Bearer ${ELASTICSEARCH_APM_SECRET}"
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
